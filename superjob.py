@@ -28,5 +28,14 @@ class SuperJob(JobApi):
         return response.json()['objects']
 
     def get_region_vacancies(self, keyword):
-        response = get(f'https://api.hh.ru/vacancies?text={keyword}')
-        return response.json()['items']
+
+        params = {
+            "keyword": keyword,
+            "page": "1"
+        }
+        headers = {
+            'X-Api-App-Id': self.__API_KEY
+        }
+
+        response = get(self._api_link, headers=headers, params=params)
+        return response.json()['objects']

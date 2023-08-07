@@ -43,7 +43,7 @@ def print_prettytable_sj(json_data, sorty):
 
     table = get_prettytable()
 
-    for item in json_data["objects"]:
+    for item in json_data:
         item_values = []
         item_values.append(item.get("id", ""))
         item_values.append(item.get("profession", "")[:30])

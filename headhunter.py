@@ -18,5 +18,5 @@ class HeadHunter(JobApi):
         return response.json()['items']
 
     def get_region_vacancies(self, keyword):
-        response = get(f'https://api.hh.ru/vacancies?text={keyword}')
+        response = get(f'https://api.hh.ru/vacancies?area={keyword}')
         return response.json()['items']

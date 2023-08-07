@@ -19,9 +19,6 @@ class JSONJobFile(JobFile):
     def get_vacancies(self, platform, **kwargs):
 
         with open(self.file_path) as file:
-            t = json.load(file)
-            print(t)
-
             return json.load(file)
 
     def remove_vacancy(self, vacancy_id):

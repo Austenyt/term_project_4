@@ -21,24 +21,22 @@ def run_user_interface():
 
     # Блок получения информации о вакансиях с выбранной платформы в России
     while flag_1:
+        print("Выберите платформу, с которой хотите получить вакансии: ")
         print_welcome_user_2()
-        user_input_pl = input("Выбери цифрой платформу: ")
+        user_input_pl = input("Введите одну из предложенных цифр: ")
         if user_input_pl in ["1", "2"]:
             platform = list_platforms[int(user_input_pl) - 1]
             print(f"Выбран сайт {platform()}\n")
 
             while True:
+                print("Выберите операцию, связанную с выводом информации о вакансиях: ")
                 print_operations()
-                choice = input("Выбери цифрой (1, 2, 3, 4) запрос: ")
+                choice = input("Введите одну из предложенных цифр: ")
 
                 if choice == "1":
                     search_query = input("Введите поисковый запрос: ")
                     res = platform().get_vacancies_api(search_query)
                     print(print_result_search(platform, res))
-                    # vacancies = []
-                    # for vac in print_result_search(platform, res):
-                    #     vacancy = Vacancy(vac[0], vac[1], vac[2], vac[3], vac[4], vac[5], vac[6])
-                    #     vacancies.append(vacancy)
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
@@ -55,18 +53,18 @@ def run_user_interface():
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
-                # elif choice == "3":
-                #     region = input("Получить вакансии выбранного региона: ")
-                #     n = input("Количество для вывода: ")
-                #     res = platform().get_region_vacancies(region, n)
-                #     print(print_result_search(platform, res))
-                #     input("Нажмите ENTER, чтобы продолжить!")
-                #     break
+                elif choice == "3":
+                    print("Выберите регион из списка\n1. Москва\n2. Санкт-Петербург")
+                    region = input("Введите номер региона: ")
+                    res = platform().get_region_vacancies(region)
+                    print(print_result_search(platform, res))
+                    input("Нажмите ENTER, чтобы продолжить!")
+                    break
 
                 elif choice == "4":
                     keywords = input("Получить вакансии, по ключевому слову в описании: ")
                     n = input("Количество для вывода: ")
-                    res = platform().get_region_vacancies(keywords, n)
+                    res = platform().get_region_vacancies(keywords)
                     print(print_result_search(platform, res))
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
@@ -82,24 +80,6 @@ def run_user_interface():
             filename = "data_vacancies.json"
             js_file = JSONJobFile(filename)  # JSON
             file_path = js_file.add_vacancy(res)
-
-            # Блок управления вакансиями в файле
-            while True:
-                user_choice = input("1 - Посмотреть вакансии\n"
-                                    "2 - Удалить вакансию по id\n"
-                                    "0 - Назад\n")
-
-                if user_choice == "1":
-                    print(js_file.get_vacancies(platform))
-
-                elif user_choice == "2":
-                    del_vacancy = input("id вакансии: ")
-                    for vac in vacancies:
-                        if vac.id == del_vacancy:
-                            vacancies.remove(vac)
-                elif user_choice == "0":
-                    break
-                input("Нажмите ENTER, чтобы продолжить!")
 
         elif user_input_pl == "0":
             flag_1 = False
