@@ -35,10 +35,10 @@ def run_user_interface():
                     search_query = input("Введите поисковый запрос: ")
                     res = platform().get_vacancies_api(search_query)
                     print(print_result_search(platform, res))
-                    vacancies = []
-                    for vac in print_result_search(platform, res):
-                        vacancy = Vacancy(vac[0], vac[1], vac[2], vac[3], vac[4], vac[5], vac[6])
-                        vacancies.append(vacancy)
+                    # vacancies = []
+                    # for vac in print_result_search(platform, res):
+                    #     vacancy = Vacancy(vac[0], vac[1], vac[2], vac[3], vac[4], vac[5], vac[6])
+                    #     vacancies.append(vacancy)
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
@@ -55,13 +55,13 @@ def run_user_interface():
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
-                elif choice == "3":
-                    region = input("Получить вакансии выбранного региона: ")
-                    n = input("Количество для вывода: ")
-                    res = platform().get_region_vacancies(region, n)
-                    print(print_result_search(platform, res))
-                    input("Нажмите ENTER, чтобы продолжить!")
-                    break
+                # elif choice == "3":
+                #     region = input("Получить вакансии выбранного региона: ")
+                #     n = input("Количество для вывода: ")
+                #     res = platform().get_region_vacancies(region, n)
+                #     print(print_result_search(platform, res))
+                #     input("Нажмите ENTER, чтобы продолжить!")
+                #     break
 
                 elif choice == "4":
                     keywords = input("Получить вакансии, по ключевому слову в описании: ")
